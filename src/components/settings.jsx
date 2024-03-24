@@ -16,7 +16,7 @@ const Settings = () => {
         className="w-96"
         slidercolor={"bg-green-400"}
       />
-      <h1 className="text-2xl font-light text-black">
+      <h1 className="text-xl font-light text-black">
         Minutes : {settings.workValue}
       </h1>
     </div>

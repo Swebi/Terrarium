@@ -4,10 +4,14 @@ import "react-circular-progressbar/dist/styles.css";
 import { IoPlayCircleSharp, IoPauseSharp } from "react-icons/io5";
 import { SettingsContext } from "@/contexts/settingsContext";
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+
 import BreakSettings from "./breaksettings";
 
 const BreakTimer = () => {
@@ -61,7 +65,7 @@ const BreakTimer = () => {
   if (seconds < 10) seconds = "0" + seconds;
 
   return (
-    <div className="flex flex-col justify-center items-center gap-8 p-16 px-32 pb-32 border bg-white rounded-sm">
+    <div className="flex flex-col justify-center items-center gap-8 p-16 px-32  border bg-white rounded-sm">
       <CircularProgressbar
         counterClockwise={true}
         value={percentage}
@@ -94,14 +98,19 @@ const BreakTimer = () => {
           />
         )}
       </div>
-      <Popover>
-        <PopoverTrigger className="text-2xl font-light">
-          Settings
-        </PopoverTrigger>
-        <PopoverContent className="w-fit">
+
+      <Dialog>
+        <DialogTrigger className="text-2xl font-light">Settings</DialogTrigger>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Choose Duration</DialogTitle>
+            <DialogDescription>
+              Adjust the slider according to your break length
+            </DialogDescription>
+          </DialogHeader>
           <BreakSettings />
-        </PopoverContent>
-      </Popover>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
