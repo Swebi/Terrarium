@@ -61,7 +61,7 @@ const BreakTimer = () => {
   if (seconds < 10) seconds = "0" + seconds;
 
   return (
-    <div className="flex flex-col justify-center items-center gap-8 p-16 px-32 pb-32 border bg-white">
+    <div className="flex flex-col justify-center items-center gap-8 p-16 px-32 pb-32 border bg-white rounded-sm">
       <CircularProgressbar
         counterClockwise={true}
         value={percentage}
@@ -95,7 +95,9 @@ const BreakTimer = () => {
         )}
       </div>
       <Popover>
-        <PopoverTrigger className="text-2xl">Settings</PopoverTrigger>
+        <PopoverTrigger className="text-2xl font-light">
+          Settings
+        </PopoverTrigger>
         <PopoverContent className="w-fit">
           <BreakSettings />
         </PopoverContent>
