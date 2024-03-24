@@ -14,7 +14,7 @@ const Settings = () => {
         max={60}
         step={1}
         className="w-96"
-        slidercolor={"bg-green-400"}
+        slidercolor={"bg-green-500"}
       />
       <h1 className="text-xl font-light text-black">
         Minutes : {settings.workValue}

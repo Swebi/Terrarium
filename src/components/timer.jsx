@@ -74,7 +74,7 @@ const Timer = () => {
         strokeWidth={6}
         styles={buildStyles({
           textColor: "#000",
-          pathColor: "#4aec8c",
+          pathColor: "#2ad567",
           tailColor: "rgba(255,255,255,.6)",
         })}
       />
