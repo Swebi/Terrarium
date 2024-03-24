@@ -66,7 +66,7 @@ const Timer = () => {
   if (seconds < 10) seconds = "0" + seconds;
 
   return (
-    <div className="flex flex-col justify-center items-center gap-8 p-16 px-32 border bg-white rounded-sm">
+    <div className="flex flex-col justify-center items-center gap-8 p-10 px-36 border bg-white rounded-2xl shadow-lg">
       <CircularProgressbar
         counterClockwise={true}
         value={percentage}
