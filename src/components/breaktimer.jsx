@@ -8,27 +8,26 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import Settings from "./settings";
+import BreakSettings from "./breaksettings";
 
-const Timer = () => {
+const BreakTimer = () => {
   const settings = useContext(SettingsContext);
 
   const [isPaused, setIsPaused] = useState(true);
-  const [secondsLeft, setSecondsLeft] = useState(settings.workValue * 60);
+  const [secondsLeft, setSecondsLeft] = useState(settings.breakValue * 60);
 
   const secondsLeftRef = useRef(secondsLeft);
   const isPausedRef = useRef(isPaused);
 
   function initTimer() {
-    setSecondsLeft(settings.workValue * 60);
-    secondsLeftRef.current = settings.workValue * 60;
+    setSecondsLeft(settings.breakValue * 60);
+    secondsLeftRef.current = settings.breakValue * 60;
   }
 
   function tick() {
     if (secondsLeftRef.current <= 0) {
       resetTimer();
-      settings.setActiveTab("break");
-
+      settings.setActiveTab("focus");
       return;
     }
 
@@ -39,8 +38,8 @@ const Timer = () => {
   function resetTimer() {
     setIsPaused(true);
     isPausedRef.current = true;
-    setSecondsLeft(settings.workValue * 60);
-    secondsLeftRef.current = settings.workValue * 60;
+    setSecondsLeft(settings.breakValue * 60);
+    secondsLeftRef.current = settings.breakValue * 60;
   }
 
   useEffect(() => {
@@ -54,7 +53,7 @@ const Timer = () => {
     return () => clearInterval(interval);
   }, [settings]);
 
-  const totalSeconds = settings.workValue * 60;
+  const totalSeconds = settings.breakValue * 60;
   const percentage = Math.round((secondsLeft / totalSeconds) * 100);
 
   const minutes = Math.floor(secondsLeft / 60);
@@ -70,7 +69,7 @@ const Timer = () => {
         strokeWidth={6}
         styles={buildStyles({
           textColor: "#000",
-          pathColor: "#4aec8c",
+          pathColor: "#60a5fa",
           tailColor: "rgba(255,255,255,.6)",
         })}
       />
@@ -98,11 +97,11 @@ const Timer = () => {
       <Popover>
         <PopoverTrigger className="text-2xl">Settings</PopoverTrigger>
         <PopoverContent className="w-fit">
-          <Settings />
+          <BreakSettings />
         </PopoverContent>
       </Popover>
     </div>
   );
 };
 
-export default Timer;
+export default BreakTimer;

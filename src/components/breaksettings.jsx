@@ -2,25 +2,25 @@ import React, { useEffect, useState, useContext } from "react";
 import { Slider } from "@/components/ui/slider";
 import { SettingsContext } from "@/contexts/settingsContext";
 
-const Settings = () => {
+const BreakSettings = () => {
   const settings = useContext(SettingsContext);
 
   return (
-    <div className="flex flex-col justify-center items-center gap-5 pt-2">
+    <div className="flex flex-col justify-center items-center gap-6 pt-2">
       <Slider
-        defaultValue={settings.workValue}
-        onValueChange={(value) => settings.setWorkValue([value])}
+        defaultValue={settings.breakValue}
+        onValueChange={(value) => settings.setBreakValue([value])}
         min={1}
         max={60}
         step={1}
         className="w-96"
-        slidercolor={"bg-green-400"}
+        slidercolor={"bg-blue-400"}
       />
       <h1 className="text-2xl font-light text-black">
-        Minutes: {settings.workValue}
+        Break: {settings.breakValue}
       </h1>
     </div>
   );
 };
 
-export default Settings;
+export default BreakSettings;
