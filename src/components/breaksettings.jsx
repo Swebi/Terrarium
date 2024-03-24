@@ -17,7 +17,7 @@ const BreakSettings = () => {
         slidercolor={"bg-blue-400"}
       />
       <h1 className="text-2xl font-light text-black">
-        Break: {settings.breakValue}
+        Minutes : {settings.breakValue}
       </h1>
     </div>
   );

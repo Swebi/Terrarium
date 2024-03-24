@@ -96,7 +96,9 @@ const Timer = () => {
         )}
       </div>
       <Popover>
-        <PopoverTrigger className="text-2xl">Settings</PopoverTrigger>
+        <PopoverTrigger className="text-2xl font-light">
+          Settings
+        </PopoverTrigger>
         <PopoverContent className="w-fit">
           <Settings />
         </PopoverContent>
