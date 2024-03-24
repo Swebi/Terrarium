@@ -97,20 +97,21 @@ const BreakTimer = () => {
             }}
           />
         )}
+        <Dialog>
+          <DialogTrigger className="text-2xl font-light">
+            Settings
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Choose Duration</DialogTitle>
+              <DialogDescription>
+                Adjust the slider according to your break length
+              </DialogDescription>
+            </DialogHeader>
+            <BreakSettings />
+          </DialogContent>
+        </Dialog>
       </div>
-
-      <Dialog>
-        <DialogTrigger className="text-2xl font-light">Settings</DialogTrigger>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Choose Duration</DialogTitle>
-            <DialogDescription>
-              Adjust the slider according to your break length
-            </DialogDescription>
-          </DialogHeader>
-          <BreakSettings />
-        </DialogContent>
-      </Dialog>
     </div>
   );
 };

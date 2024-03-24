@@ -98,20 +98,21 @@ const Timer = () => {
             }}
           />
         )}
+        <Dialog>
+          <DialogTrigger className="text-2xl font-light">
+            Settings
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Choose Duration</DialogTitle>
+              <DialogDescription>
+                Adjust the slider according to your pomodoro length
+              </DialogDescription>
+            </DialogHeader>
+            <Settings />
+          </DialogContent>
+        </Dialog>
       </div>
-
-      <Dialog>
-        <DialogTrigger className="text-2xl font-light">Settings</DialogTrigger>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Choose Duration</DialogTitle>
-            <DialogDescription>
-              Adjust the slider according to your pomodoro length
-            </DialogDescription>
-          </DialogHeader>
-          <Settings />
-        </DialogContent>
-      </Dialog>
     </div>
   );
 };
