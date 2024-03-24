@@ -3,9 +3,40 @@ import TimerTabs from "./components/timerTabs";
 import Navbar from "./components/navbar";
 import { Calendar } from "@/components/ui/calendar";
 import TodoInput from "./components/todoinput";
+import { BarChart } from "@tremor/react";
 
 function App() {
   const [date, setDate] = useState(Date);
+  const chartdata = [
+    {
+      name: "Amphibians",
+      "Number of threatened species": 2488,
+    },
+    {
+      name: "Birds",
+      "Number of threatened species": 1445,
+    },
+    {
+      name: "Crustaceans",
+      "Number of threatened species": 743,
+    },
+    {
+      name: "Ferns",
+      "Number of threatened species": 281,
+    },
+    {
+      name: "Arachnids",
+      "Number of threatened species": 251,
+    },
+    {
+      name: "Corals",
+      "Number of threatened species": 232,
+    },
+    {
+      name: "Algae",
+      "Number of threatened species": 98,
+    },
+  ];
 
   return (
     <>
@@ -38,7 +69,16 @@ function App() {
               </div>
             </div>
           </div>
-          <div className="flex border h-full overflow-hidden p-4 mr-10 rounded-2xl shadow-lg bg-white"></div>
+          <div className="flex border h-full overflow-hidden p-4 mr-10 rounded-2xl shadow-lg bg-white">
+            <BarChart
+              data={chartdata}
+              index="name"
+              categories={["Number of threatened species"]}
+              colors={["blue"]}
+              yAxisWidth={48}
+              onValueChange={(v) => console.log(v)}
+            />
+          </div>
         </div>
       </div>
     </>
