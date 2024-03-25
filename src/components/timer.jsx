@@ -2,7 +2,6 @@ import React, { useEffect, useState, useContext, useRef } from "react";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { IoPlayCircleSharp, IoPauseSharp, IoStopCircle } from "react-icons/io5";
-import { FaStop } from "react-icons/fa";
 
 import { SettingsContext } from "@/contexts/settingsContext";
 
@@ -38,7 +37,7 @@ const Timer = ({
   function tick() {
     if (secondsLeftRef.current <= 0) {
       completeSession();
-      completeFullSession();
+      completeFullSession(); // full session only when seconds reaches zero,
       resetTimer();
       settings.setActiveTab("break");
       return;
@@ -51,7 +50,7 @@ const Timer = ({
   function completeFullSession() {
     // Retrieve the current fullSessions count from local storage
     const fullSessionsFromStorage =
-      JSON.parse(localStorage.getItem("fullSessions")) || 0;
+      JSON.parse(localStorage.getItem("fullSessions")) || 0; // if local storage is empty null is returned so ass a fallback 0 is there in or
 
     // Increment the fullSessions count
     const updatedFullSessions = fullSessionsFromStorage + 1;
@@ -63,13 +62,13 @@ const Timer = ({
 
   function completeSession() {
     const sessionDuration = settings.workValue * 60 - secondsLeftRef.current;
-
+    // check to see if stop is pressed when before timer is started
     if (sessionDuration === 0) {
       return;
     } else {
       // Retrieve existing completed sessions from local storage
       const sessionsFromStorage =
-        JSON.parse(localStorage.getItem("completedSessions")) || [];
+        JSON.parse(localStorage.getItem("completedSessions")) || []; // if local storage is empty null is returned so ass a fallback [] empty array is there in or
 
       // Push the new session duration to the existing sessions
       const updatedSessions = [...sessionsFromStorage, sessionDuration];
@@ -86,9 +85,14 @@ const Timer = ({
   function resetTimer() {
     setIsPaused(true);
     isPausedRef.current = true;
-    setSecondsLeft(settings.workValue * 60);
+    setSecondsLeft(settings.workValue * 60); // after timer is completed, agains sets secondsLeft to value from slider
     secondsLeftRef.current = settings.workValue * 60;
   }
+
+  // can't use state variables here because multiple state updates together, causing unexpected behavior in timer logic
+  // useRef hook  maintain mutable references that persist across re-renders without causing re-renders themselves
+  // like the isPaused will use it's initial value, even if i change it's state with setState
+  // so we have to use the ref variables
 
   useEffect(() => {
     initTimer();
@@ -99,13 +103,13 @@ const Timer = ({
     }, 100);
 
     return () => clearInterval(interval);
-  }, [settings]);
+  }, [settings]); // depends on settings context, matlab if settings changes the work minutes, iniit timer is run again, initialising the timer with new values from the slider
 
   const totalSeconds = settings.workValue * 60;
-  const percentage = Math.round((secondsLeft / totalSeconds) * 100);
+  const percentage = Math.round((secondsLeft / totalSeconds) * 100); // keeps changing as it is using secondsLeft state
 
-  const minutes = Math.floor(secondsLeft / 60);
-  let seconds = secondsLeft % 60;
+  const minutes = Math.floor(secondsLeft / 60); // 73/60 gives 1.something floor will return 1 ceil gives 2
+  let seconds = secondsLeft % 60; // 73 gives 13 so 1:13 but 63 gives 3 so 1:3 which isn't the right format for "03"
   if (seconds < 10) seconds = "0" + seconds;
 
   return (
