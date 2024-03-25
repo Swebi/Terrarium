@@ -61,16 +61,23 @@ const Timer = () => {
   function completeSession() {
     const sessionDuration = settings.workValue * 60 - secondsLeftRef.current;
 
-    // Retrieve existing completed sessions from local storage
-    const sessionsFromStorage =
-      JSON.parse(localStorage.getItem("completedSessions")) || [];
+    if (sessionDuration === 0) {
+      return;
+    } else {
+      // Retrieve existing completed sessions from local storage
+      const sessionsFromStorage =
+        JSON.parse(localStorage.getItem("completedSessions")) || [];
 
-    // Push the new session duration to the existing sessions
-    const updatedSessions = [...sessionsFromStorage, sessionDuration];
+      // Push the new session duration to the existing sessions
+      const updatedSessions = [...sessionsFromStorage, sessionDuration];
 
-    // Update state and local storage with the updated sessions
-    setCompletedSessions(updatedSessions);
-    localStorage.setItem("completedSessions", JSON.stringify(updatedSessions));
+      // Update state and local storage with the updated sessions
+      setCompletedSessions(updatedSessions);
+      localStorage.setItem(
+        "completedSessions",
+        JSON.stringify(updatedSessions)
+      );
+    }
   }
 
   function resetTimer() {
