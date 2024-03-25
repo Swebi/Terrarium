@@ -1,8 +1,12 @@
 import React, { useEffect, useState, useContext, useRef } from "react";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import { IoPlayCircleSharp, IoPauseSharp } from "react-icons/io5";
+import { IoPlayCircleSharp, IoPauseSharp, IoStopCircle } from "react-icons/io5";
+import { FaStop } from "react-icons/fa";
+
 import { SettingsContext } from "@/contexts/settingsContext";
+
+import Settings from "./settings";
 import {
   Dialog,
   DialogContent,
@@ -12,9 +16,12 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
-import BreakSettings from "./breaksettings";
-
-const BreakTimer = () => {
+const Timer = ({
+  completedSessions,
+  fullSessions,
+  setCompletedSessions,
+  setFullSessions,
+}) => {
   const settings = useContext(SettingsContext);
 
   const [isPaused, setIsPaused] = useState(true);
@@ -30,13 +37,50 @@ const BreakTimer = () => {
 
   function tick() {
     if (secondsLeftRef.current <= 0) {
+      completeSession();
+      completeFullSession();
       resetTimer();
-      settings.setActiveTab("focus");
+      settings.setActiveTab("break");
       return;
     }
 
     secondsLeftRef.current -= 1;
     setSecondsLeft(secondsLeftRef.current);
+  }
+
+  function completeFullSession() {
+    // Retrieve the current fullSessions count from local storage
+    const fullSessionsFromStorage =
+      JSON.parse(localStorage.getItem("fullSessions")) || 0;
+
+    // Increment the fullSessions count
+    const updatedFullSessions = fullSessionsFromStorage + 1;
+
+    // Update state and local storage with the updated fullSessions count
+    setFullSessions(updatedFullSessions);
+    localStorage.setItem("fullSessions", JSON.stringify(updatedFullSessions));
+  }
+
+  function completeSession() {
+    const sessionDuration = settings.breakValue * 60 - secondsLeftRef.current;
+
+    if (sessionDuration === 0) {
+      return;
+    } else {
+      // Retrieve existing completed sessions from local storage
+      const sessionsFromStorage =
+        JSON.parse(localStorage.getItem("completedSessions")) || [];
+
+      // Push the new session duration to the existing sessions
+      const updatedSessions = [...sessionsFromStorage, sessionDuration];
+
+      // Update state and local storage with the updated sessions
+      setCompletedSessions(updatedSessions);
+      localStorage.setItem(
+        "completedSessions",
+        JSON.stringify(updatedSessions)
+      );
+    }
   }
 
   function resetTimer() {
@@ -77,7 +121,7 @@ const BreakTimer = () => {
           tailColor: "rgba(255,255,255,.6)",
         })}
       />
-      <div className="flex">
+      <div className="flex justify-center items-center gap-4">
         {isPaused ? (
           <IoPlayCircleSharp
             size={70}
@@ -97,6 +141,15 @@ const BreakTimer = () => {
             }}
           />
         )}
+        <IoStopCircle
+          size={70}
+          color="#000"
+          onClick={() => {
+            completeSession();
+            resetTimer();
+          }}
+        />
+
         <Dialog>
           <DialogTrigger className="text-2xl font-light">
             Settings
@@ -105,10 +158,10 @@ const BreakTimer = () => {
             <DialogHeader>
               <DialogTitle>Choose Duration</DialogTitle>
               <DialogDescription>
-                Adjust the slider according to your break length
+                Adjust the slider according to your pomodoro length
               </DialogDescription>
             </DialogHeader>
-            <BreakSettings />
+            <Settings />
           </DialogContent>
         </Dialog>
       </div>
@@ -116,4 +169,4 @@ const BreakTimer = () => {
   );
 };
 
-export default BreakTimer;
+export default Timer;

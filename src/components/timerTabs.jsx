@@ -65,7 +65,12 @@ function TimerTabs({
               setActiveTab,
             }}
           >
-            <BreakTimer />
+            <BreakTimer
+              completedSessions={completedSessions}
+              setCompletedSessions={setCompletedSessions}
+              fullSessions={fullSessions}
+              setFullSessions={setFullSessions}
+            />
           </SettingsContext.Provider>
         </TabsContent>
       </Tabs>
