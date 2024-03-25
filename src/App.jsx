@@ -6,8 +6,9 @@ import { BarChart } from "@tremor/react";
 function App() {
   const [completedSessions, setCompletedSessions] = useState([]);
   const [fullSessions, setFullSessions] = useState();
-  const [chartData, setChartData] = useState([]);
+  const [chartData, setChartData] = useState([]); // using state for chartData as i want the graph to update as the chartData changes
 
+  // hard to keep complex structures in local storage, so formatting on FE
   function formatChartData(sessions) {
     return sessions.map((seconds) => ({
       name: "Time Spent",
@@ -15,6 +16,7 @@ function App() {
     }));
   }
 
+  // timer is only updating local storage, need to fetch and display in app 
   useEffect(() => {
     const sessionsFromStorage = JSON.parse(
       localStorage.getItem("completedSessions")

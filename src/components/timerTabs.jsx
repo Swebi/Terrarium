@@ -12,7 +12,7 @@ function TimerTabs({
 }) {
   const [workValue, setWorkValue] = useState([25]);
   const [breakValue, setBreakValue] = useState([5]);
-  const [activeTab, setActiveTab] = useState("focus");
+  const [activeTab, setActiveTab] = useState("focus"); // not related to settings but i had to pass it to timer
 
   const handleTabChange = (value) => {
     setActiveTab(value);
