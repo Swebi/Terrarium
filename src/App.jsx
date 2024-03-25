@@ -22,6 +22,7 @@ function App() {
     if (sessionsFromStorage && Array.isArray(sessionsFromStorage)) {
       setCompletedSessions(sessionsFromStorage);
       const formattedData = formatChartData(sessionsFromStorage);
+      // first time to render graph on load
       setChartData(formattedData);
     }
 
@@ -29,6 +30,14 @@ function App() {
       JSON.parse(localStorage.getItem("fullSessions")) || 0;
     setFullSessions(fullSessionsFromStorage);
   }, []);
+
+  useEffect(() => {
+    const formattedData = formatChartData(completedSessions);
+    setChartData(formattedData);
+
+    // second useEffect to check for updates ecerytime completed session updates
+    // for some reason error when putting completed sessions as a dependency in the prev useEff
+  }, [completedSessions]);
 
   return (
     <>
