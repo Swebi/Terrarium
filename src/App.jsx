@@ -44,7 +44,7 @@ function App() {
 
   return (
     <>
-      <div className="flex justify-center items-center py-10 w-full h-full md:h-screen bg-gray-100  overscroll-none">
+      <div className="flex justify-center items-center py-10 w-full h-full md:h-full lg:h-full 2xl:h-screen bg-gray-100  overscroll-none">
         {" "}
         {/*bg-[url('https://external-preview.redd.it/8loO2K5hh6prp787KssQUJklO5eyS0BxEThIX96a9b4.jpg?auto=webp&s=1a498aade9d48e0ba7a016c0f83ed8136c7d3709')] bg-cover */}
         <div className="flex flex-col justify-center items-center gap-8 w-fit ">
