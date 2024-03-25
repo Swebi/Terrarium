@@ -16,13 +16,16 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
-const Timer = () => {
+const Timer = ({
+  completedSessions,
+  fullSessions,
+  setCompletedSessions,
+  setFullSessions,
+}) => {
   const settings = useContext(SettingsContext);
 
   const [isPaused, setIsPaused] = useState(true);
   const [secondsLeft, setSecondsLeft] = useState(settings.workValue * 60);
-  const [completedSessions, setCompletedSessions] = useState([]);
-  const [fullSessions, setFullSessions] = useState();
 
   const secondsLeftRef = useRef(secondsLeft);
   const isPausedRef = useRef(isPaused);

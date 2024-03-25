@@ -21,8 +21,6 @@ function App() {
     );
     if (sessionsFromStorage && Array.isArray(sessionsFromStorage)) {
       setCompletedSessions(sessionsFromStorage);
-      console.log(sessionsFromStorage);
-
       const formattedData = formatChartData(sessionsFromStorage);
       setChartData(formattedData);
     }
@@ -32,15 +30,18 @@ function App() {
     setFullSessions(fullSessionsFromStorage);
   }, []);
 
-  // Dummy chartdata for demonstration
-
   return (
     <>
       <div className="flex flex-row justify-between py-10 w-screen h-screen bg-gray-100">
         <Navbar />
         <div className="flex flex-col gap-8">
           <div className="flex gap-8">
-            <TimerTabs />
+            <TimerTabs
+              completedSessions={completedSessions}
+              setCompletedSessions={setCompletedSessions}
+              fullSessions={fullSessions}
+              setFullSessions={setFullSessions}
+            />
             <div className="flex flex-col justify-center items-center gap-8 border h-[485px] w-[900px] mr-10 pl-8 pr-8 mt-11 rounded-2xl shadow-lg bg-white">
               <h1 className="text-5xl justify-start self-start">Hi Suhayb</h1>
               <h2 className="text-2xl justify-start self-start">

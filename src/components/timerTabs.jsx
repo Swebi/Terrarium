@@ -4,7 +4,12 @@ import Timer from "./timer";
 import BreakTimer from "./breaktimer";
 import { SettingsContext } from "@/contexts/settingsContext";
 
-function TimerTabs() {
+function TimerTabs({
+  completedSessions,
+  fullSessions,
+  setCompletedSessions,
+  setFullSessions,
+}) {
   const [workValue, setWorkValue] = useState([25]);
   const [breakValue, setBreakValue] = useState([5]);
   const [activeTab, setActiveTab] = useState("focus");
@@ -42,7 +47,12 @@ function TimerTabs() {
               setActiveTab,
             }}
           >
-            <Timer />
+            <Timer
+              completedSessions={completedSessions}
+              setCompletedSessions={setCompletedSessions}
+              fullSessions={fullSessions}
+              setFullSessions={setFullSessions}
+            />
           </SettingsContext.Provider>{" "}
         </TabsContent>
         <TabsContent value="break">
