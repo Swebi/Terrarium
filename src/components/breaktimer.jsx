@@ -6,7 +6,7 @@ import { FaStop } from "react-icons/fa";
 
 import { SettingsContext } from "@/contexts/settingsContext";
 
-import Settings from "./settings";
+import BreakSettings from "./breaksettings";
 import {
   Dialog,
   DialogContent,
@@ -37,50 +37,13 @@ const Timer = ({
 
   function tick() {
     if (secondsLeftRef.current <= 0) {
-      completeSession();
-      completeFullSession();
       resetTimer();
-      settings.setActiveTab("break");
+      settings.setActiveTab("focus");
       return;
     }
 
     secondsLeftRef.current -= 1;
     setSecondsLeft(secondsLeftRef.current);
-  }
-
-  function completeFullSession() {
-    // Retrieve the current fullSessions count from local storage
-    const fullSessionsFromStorage =
-      JSON.parse(localStorage.getItem("fullSessions")) || 0;
-
-    // Increment the fullSessions count
-    const updatedFullSessions = fullSessionsFromStorage + 1;
-
-    // Update state and local storage with the updated fullSessions count
-    setFullSessions(updatedFullSessions);
-    localStorage.setItem("fullSessions", JSON.stringify(updatedFullSessions));
-  }
-
-  function completeSession() {
-    const sessionDuration = settings.breakValue * 60 - secondsLeftRef.current;
-
-    if (sessionDuration === 0) {
-      return;
-    } else {
-      // Retrieve existing completed sessions from local storage
-      const sessionsFromStorage =
-        JSON.parse(localStorage.getItem("completedSessions")) || [];
-
-      // Push the new session duration to the existing sessions
-      const updatedSessions = [...sessionsFromStorage, sessionDuration];
-
-      // Update state and local storage with the updated sessions
-      setCompletedSessions(updatedSessions);
-      localStorage.setItem(
-        "completedSessions",
-        JSON.stringify(updatedSessions)
-      );
-    }
   }
 
   function resetTimer() {
@@ -145,7 +108,6 @@ const Timer = ({
           size={70}
           color="#000"
           onClick={() => {
-            completeSession();
             resetTimer();
           }}
         />
@@ -161,7 +123,7 @@ const Timer = ({
                 Adjust the slider according to your pomodoro length
               </DialogDescription>
             </DialogHeader>
-            <Settings />
+            <BreakSettings />
           </DialogContent>
         </Dialog>
       </div>
