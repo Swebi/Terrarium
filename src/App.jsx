@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import TimerTabs from "./components/timerTabs";
 import Navbar from "./components/navbar";
 import { BarChart } from "@tremor/react";
+import { Button } from "./components/ui/button";
+
 
 function App() {
   const [completedSessions, setCompletedSessions] = useState([]);
@@ -16,7 +18,7 @@ function App() {
     }));
   }
 
-  // timer is only updating local storage, need to fetch and display in app 
+  // timer is only updating local storage, need to fetch and display in app
   useEffect(() => {
     const sessionsFromStorage = JSON.parse(
       localStorage.getItem("completedSessions")
@@ -43,29 +45,39 @@ function App() {
 
   return (
     <>
-      <div className="flex flex-row justify-between py-10 w-screen h-screen bg-gray-100">
-        <Navbar />
-        <div className="flex flex-col gap-8">
-          <div className="flex gap-8">
+      <div className="flex justify-center items-center py-10 w-full h-full bg-gray-100 ">
+        <div className="flex flex-col justify-center items-center gap-8 w-fit ">
+          <div className="flex-col justify-center items-center pl-10  md:flex md:flex-row-reverse gap-8  ">
+            <div className="flex flex-col justify-center items-center gap-8 border  mb-8 md:mb-0 h-[285px] w-[450px] md:h-[300px] md:w-[320px] lg:h-[470px] lg:w-[340px] mr-10 pl-8 pr-8 mt-11 rounded-2xl shadow-lg bg-white">
+              <h1 className="text-5xl justify-start self-start">Hi Suhayb</h1>
+              <h2 className="text-2xl justify-start self-start">
+                You've completed {fullSessions} sessions
+              </h2>
+              <Button
+                className="px-10 mt-5"
+                onClick={() => {
+                  localStorage.clear();
+                  setFullSessions(0);
+                  setCompletedSessions([]);
+                }}
+              >
+                {" "}
+                Clear
+              </Button>
+            </div>
             <TimerTabs
               completedSessions={completedSessions}
               setCompletedSessions={setCompletedSessions}
               fullSessions={fullSessions}
               setFullSessions={setFullSessions}
             />
-            <div className="flex flex-col justify-center items-center gap-8 border h-[485px] w-[900px] mr-10 pl-8 pr-8 mt-11 rounded-2xl shadow-lg bg-white">
-              <h1 className="text-5xl justify-start self-start">Hi Suhayb</h1>
-              <h2 className="text-2xl justify-start self-start">
-                You've completed {fullSessions} sessions
-              </h2>
-            </div>
           </div>
-          <div className="flex border h-full overflow-hidden p-4 mr-10 rounded-2xl shadow-lg bg-white">
+          <div className="flex border w-[450px] md:w-[780px] lg:w-[950px] mx-auto justify-center items-center h-fit p-4 mr-10 rounded-2xl shadow-lg bg-white">
             <BarChart
               data={chartData}
               index="name"
               categories={["Seconds"]}
-              colors={["blue"]}
+              colors={["teal"]}
               yAxisWidth={48}
               onValueChange={(v) => console.log(v)}
             />

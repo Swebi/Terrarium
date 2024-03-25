@@ -17,7 +17,7 @@ const Settings = () => {
         slidercolor={"bg-green-500"}
       />
       <h1 className="text-xl font-light text-black">
-        Minutes : {settings.workValue}
+        Focus Time : {settings.workValue} Minutes
       </h1>
     </div>
   );

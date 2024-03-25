@@ -2,8 +2,7 @@ import React, { useEffect, useState, useContext, useRef } from "react";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { IoPlayCircleSharp, IoPauseSharp, IoStopCircle } from "react-icons/io5";
-import { FaStop } from "react-icons/fa";
-
+import { IoMdSettings } from "react-icons/io";
 import { SettingsContext } from "@/contexts/settingsContext";
 
 import BreakSettings from "./breaksettings";
@@ -72,7 +71,7 @@ const Timer = ({
   if (seconds < 10) seconds = "0" + seconds;
 
   return (
-    <div className="flex flex-col justify-center items-center gap-8 p-10 px-36 border bg-white rounded-2xl shadow-lg">
+    <div className="flex flex-col justify-center items-center gap-8 p-10 px-36 border bg-white rounded-2xl shadow-lg w-[450px] md:w-[420px] lg:w-[575px]">
       <CircularProgressbar
         counterClockwise={true}
         value={percentage}
@@ -114,7 +113,7 @@ const Timer = ({
 
         <Dialog>
           <DialogTrigger className="text-2xl font-light">
-            Settings
+            <IoMdSettings size={65} />
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>

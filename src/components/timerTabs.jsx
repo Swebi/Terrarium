@@ -3,6 +3,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Timer from "./timer";
 import BreakTimer from "./breaktimer";
 import { SettingsContext } from "@/contexts/settingsContext";
+import Settings from "./settings";
+import BreakSettings from "./breaksettings";
 
 function TimerTabs({
   completedSessions,
@@ -22,7 +24,7 @@ function TimerTabs({
     <>
       <Tabs
         defaultValue="focus"
-        className="min-w-fit "
+        className="w-[90%] md:w-fit "
         value={activeTab}
         onValueChange={handleTabChange}
         // When a tab change event occurs (e.g., clicking on a tab trigger), the onValueChange event of the Tabs component is triggered.
@@ -35,6 +37,12 @@ function TimerTabs({
           </TabsTrigger>
           <TabsTrigger value="break" className="px-5 py-2 text-lg font-light">
             Break
+          </TabsTrigger>
+          <TabsTrigger
+            value="settings"
+            className="px-5 py-2 text-lg font-light"
+          >
+            Settings
           </TabsTrigger>
         </TabsList>
         <TabsContent value="focus">
@@ -71,6 +79,22 @@ function TimerTabs({
               fullSessions={fullSessions}
               setFullSessions={setFullSessions}
             />
+          </SettingsContext.Provider>
+        </TabsContent>
+        <TabsContent value="settings">
+          <SettingsContext.Provider
+            value={{
+              workValue,
+              breakValue,
+              setWorkValue,
+              setBreakValue,
+              setActiveTab,
+            }}
+          >
+            <div className="flex flex-col justify-center items-center gap-8 p-10 px-36 border  h-[285px]  md:h-[300px]  lg:h-[470px]  bg-white rounded-2xl shadow-lg w-[450px] md:w-[420px] lg:w-[575px]">
+              <Settings></Settings>
+              <BreakSettings></BreakSettings>
+            </div>
           </SettingsContext.Provider>
         </TabsContent>
       </Tabs>
