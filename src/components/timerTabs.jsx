@@ -91,7 +91,7 @@ function TimerTabs({
               setActiveTab,
             }}
           >
-            <div className="flex flex-col justify-center items-center gap-8 p-10 px-36 border  h-[344px]  md:h-[314px]  lg:h-[470px]  bg-white rounded-2xl shadow-lg w-[450px] md:w-[420px] lg:w-[575px]">
+            <div className="flex flex-col justify-center items-center gap-8 p-10 px-36 border   bg-white rounded-2xl shadow-lg w-[300px] h-[366px] sm:w-[450px] md:w-[420px] sm:h-[344px]  md:h-[314px]  lg:h-[470px]  lg:w-[575px]">
               <Settings></Settings>
               <BreakSettings></BreakSettings>
             </div>

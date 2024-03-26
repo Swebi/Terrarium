@@ -13,7 +13,7 @@ const BreakSettings = () => {
         min={1}
         max={60}
         step={1}
-        className="w-96"
+        className="w-64 sm:w-96"
         slidercolor={"bg-blue-400"}
       />
       <h1 className="text-xl font-light text-black">

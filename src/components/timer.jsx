@@ -114,7 +114,7 @@ const Timer = ({
   if (seconds < 10) seconds = "0" + seconds;
 
   return (
-    <div className="flex flex-col justify-center items-center gap-8 p-10 px-36 border bg-white rounded-2xl shadow-lg w-[450px] md:w-[420px] lg:w-[575px]">
+    <div className="flex flex-col justify-center items-center gap-8 p-10 px-12 sm:p-10 sm:px-36 border bg-white rounded-2xl shadow-lg mx-auto w-[300px]  sm:w-[450px] md:w-[420px] lg:w-[575px]">
       <CircularProgressbar
         counterClockwise={true}
         value={percentage}
@@ -129,7 +129,7 @@ const Timer = ({
       <div className="flex justify-center items-center gap-4">
         {isPaused ? (
           <IoPlayCircleSharp
-            size={70}
+            className="text-5xl sm:text-7xl"
             color="#000"
             onClick={() => {
               setIsPaused(false);
@@ -138,7 +138,7 @@ const Timer = ({
           />
         ) : (
           <IoPauseSharp
-            size={70}
+            className="text-5xl sm:text-7xl"
             color="#000"
             onClick={() => {
               setIsPaused(true);
@@ -147,7 +147,7 @@ const Timer = ({
           />
         )}
         <IoStopCircle
-          size={70}
+          className="text-5xl sm:text-7xl"
           color="#000"
           onClick={() => {
             completeSession();
@@ -157,7 +157,7 @@ const Timer = ({
 
         <Dialog>
           <DialogTrigger className="text-2xl font-light">
-            <IoMdSettings size={65} />
+            <IoMdSettings className="text-5xl sm:text-7xl" />
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
