@@ -1,8 +1,12 @@
-# React + Vite
+# Terrarium 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Your Productivity Hub
 
-Currently, two official plugins are available:
+## Screenshots
+<img width="1440" alt="image" src="https://github.com/Swebi/Terrarium/assets/82446436/7fe6a682-501d-4288-9317-12e82025653b">
+<img width="1440" alt="image" src="https://github.com/Swebi/Terrarium/assets/82446436/100c4293-4871-462b-8bef-45110a9e4707">
+<img width="1440" alt="image" src="https://github.com/Swebi/Terrarium/assets/82446436/6aef6088-a596-4626-bf87-b9554970f683">
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<img width="1440" alt="image" src="https://github.com/Swebi/Terrarium/assets/82446436/a035134a-2448-474a-8c4c-c2a4658904a7">
+
+
