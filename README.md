@@ -1,6 +1,7 @@
 # Terrarium 
 
 Your Productivity Hub
+https://terrarium-timer.vercel.app
 
 ## Screenshots
 <img width="1440" alt="image" src="https://github.com/Swebi/Terrarium/assets/82446436/7fe6a682-501d-4288-9317-12e82025653b">
