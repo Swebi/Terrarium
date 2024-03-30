@@ -101,7 +101,7 @@ const Timer = ({
       if (!isPausedRef.current) {
         tick();
       }
-    }, 100);
+    }, 1000);
 
     return () => clearInterval(interval);
   }, [settings]); // depends on settings context, matlab if settings changes the work minutes, iniit timer is run again, initialising the timer with new values from the slider

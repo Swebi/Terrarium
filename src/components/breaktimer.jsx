@@ -58,7 +58,7 @@ const Timer = ({
       if (!isPausedRef.current) {
         tick();
       }
-    }, 100);
+    }, 1000);
 
     return () => clearInterval(interval);
   }, [settings]);
